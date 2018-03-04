@@ -1,0 +1,48 @@
+
+
+
+
+*, :after, :before{
+  color: inherit !important;
+}
+  .agileits_header,.logo_products,.breadcrumbs,.footer,.print-style,.footer-botm{display:none;}
+  html, body{
+font-size: 90%;
+  	font-family: "neo";
+  	background:#ffffff;
+    direction: rtl;
+
+  }
+.inv-title{
+ background: #615c5c !important;
+ text-align: center !important;
+ color: #fff !important;
+ padding: 12px !important;
+ margin-top: 10px !important;
+}
+ .table-details{
+   border:none !important;
+   margin-top: 25px !important;
+   width: 30% !important;
+ }
+.table th
+ {
+   font-weight: 100;
+color: #fff !important;
+   border-style: solid !important;
+   border-color: #BBB !important;
+   background-color: #666 !important;
+   color: #fff !important;
+
+ }
+ .body-table{
+   border-radius: 0.25em !important;
+   border-style: solid !important;
+   border-color: #BBB !important;
+
+ }
+ /* .thead-dark{
+   color: #fff !important;
+background-color: #8e8989 !important;
+-webkit-print-color-adjust: exact;
+ } */

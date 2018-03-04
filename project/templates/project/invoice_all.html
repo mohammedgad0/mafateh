@@ -1,0 +1,96 @@
+{% extends "project/base_site.html" %}
+{% load i18n %}
+{% block stylesheets %}
+{{block.super}}
+<!-- <link type="text/css" href="/stylesheets/print.css" media="print"> -->
+<link rel="stylesheet" type="text/css" href="/static/build/css/print.css" media="print">
+<style media="all" type="text/css">
+   .inv-title{
+    background: #615c5c;
+    text-align: center;
+    color: #fff;
+    padding: 12px;
+    margin-top: 10px;}
+    .table-details{
+      border:none;
+      margin-top: 25px;
+
+    }
+    .head-table{
+
+      border-style: solid;
+      border-color: #BBB;
+      background: #666;
+      color: #fff;
+      webkit-print-color-adjust: exact;
+    }
+    .body-table{
+      border-radius: 0.25em;
+      border-style: solid;
+      border-color: #BBB;
+      webkit-print-color-adjust: exact;
+    }
+    .thead-dark{
+      color: #fff;
+background-color: #8e8989;
+webkit-print-color-adjust: exact;
+    }
+
+</style>
+{% endblock %}
+{% block content %}
+<div class="internal-page" style="min-height:500px">
+<!-- breadcrumbs -->
+<div class="breadcrumbs">
+   <div class="container">
+      <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+         <li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>الرئيسية</a></li>
+         <li class="active"> {{_('INVOICE SHOW')}}</li>
+      </ol>
+   </div>
+</div>
+<!-- //breadcrumbs -->
+<div class="container" style="min-height:500px">
+   <fieldset class="col-md-12 col-ms-12 col-xs-12" style="margin-top:25px; margin-bottom:10px;">
+      <table id='js-table' class="table table-striped">
+         <thead>
+            <tr>
+               <th> {{_('Invoice Number')}}</th>
+               <th >   {{_('Customer Name')}}</th>
+               <th>   {{_('Invoice Date')}}</th>
+               <th>{{_('TOTAL')}}</th>
+               <!-- <th>   {{_('discount')}}</th> -->
+               <th>{{_('Operations')}}</th>
+
+            </tr>
+         </thead>
+         <tbody>
+<!-- {{data.as_table}} -->
+            {% for data in all_invoice %}
+            <tr>
+               <td> {{data.invoice_number}}</td>
+               <td>   {{data.customerid.name}}</td>
+               <td>   {{data.invoicedate}}</td>
+                <td> {{data.total_before_discount}}</td>
+               <td>
+                 <a href="{% url 'project:view-invoice' data.invoice_number %}" class="btn btn-success">{{_('View') }}</a>
+                 <a href="{% url 'project:update-invoice'  data.invoice_number%}" class="btn btn-info">{{_('Update') }}</a>
+               </td>
+               <!-- <td> {{data.discount}}</td> -->
+            </tr>
+            {%endfor%}
+         </tbody>
+      </table>
+
+   </fieldset>
+   <!-- {{data.as_table}} -->
+
+<!-- {{form.as_table}} -->
+<div></div>
+{% endblock content %}
+{% block javascripts %}
+{{ block.super }}
+<script>
+</script>
+
+{% endblock%}

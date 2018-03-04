@@ -1,0 +1,126 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-03-03 17:33+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: project/forms.py:12 project/templates/project/invoice_view.html:58
+msgid "Customer number"
+msgstr "رقم العميل"
+
+#: project/forms.py:13 project/forms.py:20 project/forms.py:30
+#: project/templates/project/invoice_view.html:62
+msgid "Customer Name"
+msgstr "اسم العميل"
+
+#: project/forms.py:14 project/forms.py:26 project/forms.py:32
+#: project/templates/project/invoice_view.html:66
+msgid "Employee Name"
+msgstr "اسم الموظف"
+
+#: project/forms.py:15 project/forms.py:22 project/forms.py:31
+#: project/templates/project/invoice_view.html:54
+msgid "Invoice Date"
+msgstr "تاريخ الفاتورة"
+
+#: project/forms.py:37 project/forms.py:38 project/forms.py:60
+#: project/templates/project/invoice_add.html:93
+#: project/templates/project/invoice_view.html:99
+msgid "Name"
+msgstr "اسم المنتج"
+
+#: project/forms.py:44 project/forms.py:58
+#: project/templates/project/invoice_add.html:92
+#: project/templates/project/invoice_view.html:98
+msgid "Product Id"
+msgstr "رقم المنتج"
+
+#: project/forms.py:46 project/forms.py:47 project/forms.py:48
+#: project/forms.py:59 project/templates/project/invoice_add.html:95
+#: project/templates/project/invoice_view.html:101
+msgid "quantity"
+msgstr "الكمية"
+
+#: project/forms.py:50 project/forms.py:61
+#: project/templates/project/invoice_add.html:94
+#: project/templates/project/invoice_view.html:100
+msgid "item price"
+msgstr "سعر الوحدة"
+
+#: project/forms.py:51 project/forms.py:62
+#: project/templates/project/invoice_add.html:96
+#: project/templates/project/invoice_view.html:102
+msgid "discount"
+msgstr "الخصم"
+
+#: project/forms.py:52 project/templates/project/invoice_add.html:98
+#: project/templates/project/invoice_view.html:80
+#: project/templates/project/invoice_view.html:104
+msgid "total after price"
+msgstr "السعر بعد الخصم"
+
+#: project/forms.py:53 project/templates/project/invoice_add.html:97
+#: project/templates/project/invoice_view.html:76
+#: project/templates/project/invoice_view.html:103
+msgid "total before price"
+msgstr "السعر قبل الخصم"
+
+#: project/forms.py:63
+msgid "totalprice"
+msgstr "السعر الإجمالي"
+
+#: project/templates/project/base_site.html:13
+msgid "مؤسسة مفاتح للتجارة"
+msgstr ""
+
+#: project/templates/project/invoice_add.html:119
+#: project/templates/project/invoice_add.html:126
+msgid "Submit and print"
+msgstr "حفظ وطباعة"
+
+#: project/templates/project/invoice_add.html:120
+msgid "reset"
+msgstr "إعادة ادخال"
+
+#: project/templates/project/invoice_view.html:43
+msgid "INVOICE SHOW"
+msgstr "عرض الفاتورة"
+
+#: project/templates/project/invoice_view.html:49
+msgid "INVOICE"
+msgstr "فاتورة"
+
+#: project/templates/project/invoice_view.html:84
+msgid "VAT"
+msgstr "ضريبة القيمة المضافة"
+
+#: project/templates/project/invoice_view.html:88
+msgid "TOTAL"
+msgstr "إجمالي السعر المطلوب"
+
+#: project/templates/project/invoice_view.html:126
+msgid "print"
+msgstr "طباعة"
+
+#: project/templates/project/invoice_view.html:127
+msgid "add new invoice"
+msgstr "إضافة فاتورة جديدة"
+
+#: project/templates/project/invoice_view.html:128
+msgid "back to all invoice"
+msgstr "قائمة الفواتير"

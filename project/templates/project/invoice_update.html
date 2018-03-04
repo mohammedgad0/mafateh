@@ -1,0 +1,324 @@
+{% extends "project/base_site.html" %}
+{% load i18n %}
+{% block stylesheets %}
+{{block.super}}
+<style>
+   tr {
+   width: 100%;
+   display: inline-table;
+   table-layout: fixed;
+   }
+   table{
+   height:700px;              // <-- Select the height of the table
+   display: -moz-groupbox;    // Firefox Bad Effect
+   }
+   tbody {
+   display: block;
+   height: 700px;
+   overflow-y: scroll;
+   }
+   /* tbody{
+   overflow-y: scroll;
+   height: 200px;            //  <-- Select the height of the body
+   width: 100%;
+   position: absolute;
+   } */
+   form{margin-top: 25px;}
+</style>
+{%endblock%}
+{% block content %}
+<div class="internal-page" style="min-height:500px">
+<!-- breadcrumbs -->
+<div class="breadcrumbs">
+   <div class="container">
+      <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+         <li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>الرئيسية</a></li>
+         <li class="active">إضافة فاتورة</li>
+      </ol>
+   </div>
+</div>
+<!-- //breadcrumbs -->
+<div class="container" style="min-height:500px">
+<form method="POST" id="personForm" data-cities-url="{% url 'project:ajax_load_product' %}"  data-customer-url="{% url 'project:ajax_load_customer' %}"
+novalidate>
+   {% csrf_token %}
+{{ formset.management_form }}
+   <fieldset>
+      <legend>تفاصيل الفاتورة:</legend>
+      <div class="form-group" style="    margin-bottom: 69px;">
+        <div class=" col-md-4">
+           {{form.customer_number.label_tag}}
+           {{form.customer_number}}
+        </div>
+         <div class=" col-md-5">
+
+            {{form.customerid}}
+         </div>
+         <div class=" col-md-5">
+            {{form.customer_name.label_tag}}
+            {{form.customer_name}}
+         </div>
+
+         <div class=" col-md-3">
+            {{form.invoice_date.label_tag}}
+            {{form.invoice_date}}
+         </div>
+         <div class=" col-md-3">
+            {{form.invoicedate}}
+         </div>
+      </div>
+      <div class="form-group">
+
+         <div class=" col-md-4">
+            {{form.emp_name.label_tag}}
+            {{form.emp_name}}
+         </div>
+         <div class=" col-md-5">
+
+            {{form.emp_id}}
+         </div>
+         {{form.total_after_discount}}
+         {{form.total_before_discount}}
+         {{ form.errors }}
+      </div>
+      <!-- اسم العميل: <input type="text"><br>
+         تاريخ الفاتورة: <input type="text"><br>
+         رقم الفاتورة: <input type="text"> -->
+   </fieldset>
+   <fieldset style="margin-top:25px; margin-bottom:10px;">
+      <table id='js-table' class="table table-striped">
+         <thead>
+            <tr>
+               <th class="col-md-2"> {{_('Product Id')}}</th>
+               <th class="col-md-5">   {{_('Name')}}</th>
+               <th>   {{_('item price')}}</th>
+               <th>{{_('quantity')}}</th>
+               <th>   {{_('discount')}}</th>
+               <th>{{_('total before price')}}</th>
+               <th>{{_('total after price')}}</th>
+            </tr>
+         </thead>
+         <tbody>
+<!-- {{formset.as_table}} -->
+            {% for formset in formset %}
+
+            <tr>
+               <td class="col-md-2"> {{formset.productid}}</td>
+               <td class="col-md-5">   {{formset.name}}</td>
+               <td>   {{formset.itemprice}}</td>
+               <td>{{formset.quantity}}</td>
+               <td> {{formset.discount}}</td>
+               <td> {{formset.total_before_discount}}</td>
+               <td > {{formset.total_after_discount}}</td>
+               <td style="display:none;">{{formset.mainprice}}</td>
+            </tr>
+            {%endfor%}
+         </tbody>
+      </table>
+      <ul class="pull-left">
+         <button type="submit" id="js-submit" name="_submit" class="btn btn-success">{{ _('Submit and print') }}</button>
+         <a href="{% url 'project:add-invoice' %}" class="btn btn-primary">{{_('reset') }}</a>
+      </ul>
+
+   </fieldset>
+   <!-- {{formset.as_table}} -->
+</form>
+ <button type="submit" id="ja-submit" name="_submit" class="btn btn-success">{{ _('Submit and print') }}</button>
+<!-- {{form.as_table}} -->
+<div></div>
+{% endblock content %}
+{% block javascripts %}
+{{ block.super }}
+<script>
+//Load customer details
+$(".js-text").change(function () {
+var url = $("#personForm").attr("data-customer-url");  // get the url of the `load_cities` view
+var customer_number = $(this).val();  // get the selected country ID from the HTML input
+
+$.ajax({                       // initialize an AJAX request
+  url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+  data: {
+    'customer': customer_number       // add the country id to the GET parameters
+  },
+  success: function (data) {   // `data` is the return of the `load_cities` view function
+    console.log(data['pk']);
+    name = data['fields']['name'];
+    id = data['pk'];
+    // main_price = data['fields']['mainprice'];
+
+
+   $("#id_customer_name").val(name);
+   $("#id_customerid").val(id);
+
+   //  $("#id_form-" +[$id_number]+ "-itemprice").val(sale_price);  // replace the contents of the city input with the data that came from the server
+   //  $("#id_form-" +[$id_number]+ "-mainprice").val(main_price);
+ },
+  error: function (data) {
+    alert("لا يوجد عميل مسجل بهذا الرقم")
+  }
+});
+});
+
+
+   // $("#id_invoice_date").val('{% now "SHORT_DATETIME_FORMAT" %}')
+   // $("#id_emp_name").val('{{user.get_full_name}}')
+   // $("#id_emp_id").val('{{user.id}}')
+   $(".js-select").change(function () {
+     if (this.id.length ==19){
+       var $id_number = this.id.charAt(8)
+     }  if(this.id.length == 20){
+         $id_number = this.id.slice(8, 10)
+       }
+
+   console.log($id_number);
+
+   // $("#id_form-[id_number]-productid").change(function () {
+      var url = $("#personForm").attr("data-cities-url");  // get the url of the `load_cities` view
+      var item_id = $(this).val();  // get the selected country ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          'country': item_id       // add the country id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+          console.log(data);
+          name = data['fields']['name'];
+          sale_price = data['fields']['saleprice'];
+          main_price = data['fields']['mainprice'];
+          console.log($id_number)
+         $("#id_form-" +[$id_number]+ "-name").val(name);
+          $("#id_form-" +[$id_number]+ "-itemprice").val(sale_price);  // replace the contents of the city input with the data that came from the server
+          $("#id_form-" +[$id_number]+ "-mainprice").val(main_price);
+        }
+      });
+
+    // });
+   });
+   $(document).ready(function(){
+     // if (this.id.length ==19){
+     //   var $id_number = this.id.charAt(8)
+     // }  if(this.id.length == 20){
+     //     $id_number = this.id.slice(8, 10)
+     //   }
+
+   // console.log($id_number);
+
+   //update duration per hour based on duration per day in add and edit sheet
+   var x = $('#js-table tr').length;
+   for (i = 0; i <= x; i++){
+   $('input[name=form-'+i+'-quantity]').on('input',function(e) {
+
+   var $id = $(this).attr('name');
+   var $main_price = $id.replace("quantity", "mainprice");
+   var mainprice = $('#id_'+$main_price).val()
+
+   var $sale_price = $id.replace("quantity", "itemprice");
+   var $saleprice =   $('#id_'+$sale_price).val();
+
+   var $min_price = (mainprice * 10 / 100) + parseInt(mainprice);
+
+   console.log($min_price);
+   var $total_id = $id.replace("quantity", "total_before_discount");
+
+
+   console.log($total_id);
+   var value = this.value;
+   var $total_min_price = $min_price * value;
+   console.log($total_min_price);
+
+   console.log($saleprice);
+   var Hour = value * $saleprice ;
+   console.log($('#id_'+$main_price).val());
+     $('#id_'+$total_id).val(Hour);
+
+   if (Hour == 0){
+       $('#id_'+$total_id).val('')
+   }
+
+   });
+   $('input[name=form-'+i+'-discount]').change(function () {
+     var discount_value = this.value;
+     var $id = $(this).attr('name');
+
+     var $quantity = $id.replace("discount", "quantity");
+     var quantity_value = $('#id_'+$quantity).val()
+     console.log('quantity is' + quantity_value);
+
+     var $main_price = $id.replace("discount", "mainprice");
+     var mainprice = $('#id_'+$main_price).val()
+
+     var $sale_price = $id.replace("discount", "itemprice");
+     var $saleprice =   $('#id_'+$sale_price).val();
+     console.log('sale price is ' + $saleprice);
+
+     var $min_price = (mainprice * 10 / 100) + parseInt(mainprice);
+     var $total_min_price = $min_price * quantity_value;
+     console.log('total min price' + $total_min_price);
+     var total_price = parseInt(quantity_value) * parseInt($saleprice);
+     console.log('total price'+ total_price);
+
+     var $discount_price = total_price - (total_price * discount_value / 100)
+     console.log('discount price'+$discount_price);
+
+   var $total_id = $id.replace("discount", "total_after_discount");
+
+   if($total_min_price < $discount_price){
+       $('#id_'+$total_id).val($discount_price);
+
+   }if($total_min_price > $discount_price){
+     alert("قيمة الخصم أكبر من المسموح")
+   }
+
+     console.log('price is' + total_price);
+
+     // console.log($total_min_price);
+   });
+   $('input[name=form-'+i+'-discount]').focus(function () {
+
+     var $id = $(this).attr('id')
+     var discount_value = this.value;
+     if (discount_value == "" ){
+     $('#'+$id).val(0);
+   }
+   this.select();
+   });
+   $('input[name=form-'+i+'-discount]').blur(function () {
+     var $id = $(this).attr('id')
+     var discount_value = this.value;
+     if (discount_value == 0 ){
+     $('#'+$id).val("");
+   }
+   });
+
+   };
+   $('#js-submit').click(function(){
+     var x = $('#js-table tr').length;
+     var sum = 0;
+     var sum_after = 0;
+     for (i = 0; i <= x; i++){
+       var value = $('input[name=form-'+i+'-total_before_discount]').val();
+       if(value > 0){
+       var $total = sum += Number(value)
+}
+       var value_after = $('input[name=form-'+i+'-total_after_discount]').val();
+       if(value_after > 0){
+       var $total_after = sum_after += Number(value_after)
+}
+
+     }
+    $('#id_total_before_discount').val($total.toFixed(2))
+    $('#id_total_after_discount').val($total_after.toFixed(2))
+    // console.log($total);
+
+
+//     var value_1 = $('input[name=form-'+i+'-total_after_discount]').val();
+//     if(value_1 > 0){
+//     var $total_1 = sum_1 += Number(value_1)
+//     console.log($total_1);
+//     $('#id_total_after_discount').val($total_1)
+// }
+   });
+   });
+</script>
+{% endblock%}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ar-EG">
+   <head>
+      {% load i18n %}
+      {% block head %}
+      {% block meta %}
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <!-- Meta, title, CSS, favicons, etc. -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      {% endblock meta %}
+      <title>{% trans "مؤسسة مفاتح للتجارة" %}| {% block title %}{% endblock %}</title>
+      {% block stylesheets %}
+      <style>
+         @font-face { font-family: 'neo';
+         src: url('/static/fonts/neo/NeoSansArabic.eot');
+         src: url('/static/fonts/neo/NeoSansArabic.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/neo/NeoSansArabic.woff') format('woff'),
+         url('/static/fonts/neo/NeoSansArabic.ttf') format('truetype'),
+         url('/static/fonts/neo/NeoSansArabic.svg#ge_neofont') format('svg'); font-style: normal; }
+      </style>
+      <!-- Bootstrap -->
+      <link href="/static/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="all" >
+      <link href="/static/vendors/bootstrap/dist/css/bootstrap-rtl.min.css" rel="stylesheet" media="all">
+      <!-- Font Awesome -->
+      <link href="/static/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" media="all">
+      <!-- Custom Theme Style -->
+      <link href="/static/build/css/custom_rtl.css" rel="stylesheet" media="all">
+      <link href="/static/build/css/skdslider.css" rel="stylesheet" media="all">
+      {% endblock stylesheets %}
+      {% endblock head %}
+   </head>
+   <body class="{% block body_class %}nav-md {% endblock body_class %}">
+      {% block body %}
+      {% block header %}
+{% include "project/header.html" %}
+      {% endblock header %}
+      {% block navigation%}
+      {% include "project/navigation.html" %}
+      {% endblock navigation%}
+<div class="body">
+
+            {% block slider %}
+            {% endblock slider %}
+            {% block content %}
+            <!-- {{ content }} -->
+            {% endblock content %}
+            </div>
+            {% block footer %}
+            <footer>
+                {% include "project/footer.html" %}
+            </footer>
+            {% endblock footer %}
+
+
+      {% block javascripts %}
+      <!-- jQuery -->
+      <script src="/static/vendors/jquery/dist/jquery.min.js"></script>
+      <script src="/static/vendors/jquery/dist/jquery-ui.js"></script>
+      <!-- Bootstrap -->
+      <script src="/static/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+      {% endblock %}
+      <!-- Custom Theme Scripts -->
+      <script src="/static/build/js/skdslider.min.js"></script>
+      <script src="/static/build/js/custom.js"></script>
+      {% endblock body %}
+   </body>
+</html>

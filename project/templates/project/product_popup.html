@@ -1,0 +1,28 @@
+{% extends "project/base_site.html" %}
+{% load i18n %}
+  {% block stylesheets %}
+  {{block.super}}
+<style>
+.sample-image img{width:100%; box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.19)}
+.prod-title{margin-bottom: 7px;}
+.modal-title{color:#fe9126}
+.prod-desc{margin-bottom: 7px;}
+.prod-weight h6{display: inline-block;margin-right: 3px;}
+</style>
+{% endblock %}
+{% block header %}
+{% endblock header %}
+{% block navigation%}
+
+{% endblock navigation%}
+{% block content %}
+<!-- welcome -->
+<div class="row">
+<div class="col-md-4 sample-image"><img title="{{product.name}}" alt="{{product.name}}" src="{{product.image.url}}" /></div>
+<div class="prod-title"><h5>{{product.name}}</h5></div>
+<div class="prod-desc"> <p>{{product.descreption}}</p></div>
+<div class="prod-weight"> <span>الوزن:</span><h6>{{product.weight}}</h6></div>
+</div>
+{% endblock content %}
+{% block footer %}
+{% endblock footer%}

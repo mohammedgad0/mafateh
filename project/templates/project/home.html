@@ -1,0 +1,785 @@
+{% extends "project/base_site.html" %}
+{% load i18n %}
+
+{% block slider %}
+ <div class="slider">
+{% include "project/slider.html" %}
+</div>
+{% endblock slider %}
+
+{% block content %}
+<!-- welcome -->
+	<div class="welcome">
+		<div class="container">
+			<div class="welcome-info">
+				<h3>نبذة عن المؤسسة</h3>
+				<p class="non"> مؤسسة مفاتح للتجارة بدأت العمل في مجال الأغذية من عام 2011 حيث كانت تدعم الشركات لوجستياً الى ان توسعت وأصبحت مورد للشرق الأوسط</p>
+				<p class="rep">نطاق العمل:
+دول الشرق الأوسط
+التواصل:
+00966530000112
+البريد الالكتروني food@mft.sa</p>
+				<div class="buy wel">
+					<a href="single.html">المزيد</a>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- //welcome -->
+<!-- top-brands -->
+<div class="top-brands">
+  <div class="container">
+  <h2>أحدث العروض</h2>
+    <div class="grid_3 grid_5">
+      <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+        <ul id="myTab" class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#expeditions" id="expeditions-tab" role="tab" data-toggle="tab" aria-controls="expeditions" aria-expanded="true"> أحدث العروض</a></li>
+          <li role="presentation"><a href="#tours" role="tab" id="tours-tab" data-toggle="tab" aria-controls="tours">الأكثر مبيعاً </a></li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+          <div role="tabpanel" class="tab-pane fade in active" id="expeditions" aria-labelledby="expeditions-tab">
+            <div class="agile-tp">
+              <h5>أحدث العروض</h5>
+              <p class="w3l-ad">أستعرض معنا أحدث العروض المقدمة من مؤسسة مفاتح للتجارة</p>
+            </div>
+            <div class="agile_top_brands_grids">
+							{% for data in product%}
+              <div class="col-md-4 top_brand_left">
+                <div class="hover14 column">
+                  <div class="agile_top_brand_left_grid">
+                    <div class="agile_top_brand_left_grid_pos">
+                      <img src="/static/build/images/offer.png" alt=" " class="img-responsive" />
+                    </div>
+                    <div class="agile_top_brand_left_grid1">
+                      <figure>
+                        <div class="snipcart-item block" >
+                          <div class="snipcart-thumb item">
+                            <a href="{% url "project:product-popup" data.id %}" data-popup-url="{% url "project:product-popup" data.id %}" data-popup-title="{{data.name}}"><img title="{{data.name}}" alt="{{data.name}}" src="{{data.image.url}}" /></a>
+													<p>{{data.name}}</p>
+                            <div class="stars">
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star gray-star" aria-hidden="true"></i>
+                            </div>
+                            <!-- <h4>$20.99 <span>$35.00</span></h4> -->
+                          </div>
+                          <div class="snipcart-details top_brand_home_details">
+		
+
+
+	<div class="item button-show"><a href="{% url "project:product-popup" data.id %}" data-popup-url="{% url "project:product-popup" data.id %}" data-popup-title="{{data.name}}"> عرض المنتج</a>
+
+  <!-- <input type="submit" name="submit" value="عرض المنتج" class="button" /> -->
+
+
+                          </div>
+                        </div>
+                      </figure>
+                    </div>
+                  </div>
+                </div>
+              </div>
+							{%endfor%}
+
+              <div class="clearfix"> </div>
+            </div>
+            <!-- <div class="agile_top_brands_grids">
+              <div class="col-md-4 top_brand_left">
+                <div class="hover14 column">
+                  <div class="agile_top_brand_left_grid">
+                    <div class="agile_top_brand_left_grid_pos">
+                      <img src="/static/build/images/offer.png" alt=" " class="img-responsive" />
+                    </div>
+                    <div class="agile_top_brand_left_grid1">
+                      <figure>
+                        <div class="snipcart-item block" >
+                          <div class="snipcart-thumb">
+                            <a href="products.html"><img title=" زهر العسل 1000G جرة" alt=" زهر العسل 1000G جرة" src="/static/build/images/item-4.jpg" /></a>
+                            <p>زهر العسل 1000G جرة</p>
+                            <div class="stars">
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star gray-star" aria-hidden="true"></i>
+                            </div>
+                            <h4>$35.99 <span>$55.00</span></h4>
+                          </div>
+                          <div class="snipcart-details top_brand_home_details">
+                            <form action="#" method="post">
+                              <fieldset>
+                                <input type="hidden" name="cmd" value="_cart" />
+                                <input type="hidden" name="add" value="1" />
+                                <input type="hidden" name="business" value=" " />
+                                <input type="hidden" name="item_name" value="Fortune Sunflower Oil" />
+                                <input type="hidden" name="amount" value="35.99" />
+                                <input type="hidden" name="discount_amount" value="1.00" />
+                                <input type="hidden" name="currency_code" value="USD" />
+                                <input type="hidden" name="return" value=" " />
+                                <input type="hidden" name="cancel_return" value=" " />
+                                <input type="submit" name="submit" value="عرض المنتج" class="button" />
+                              </fieldset>
+                            </form>
+                          </div>
+                        </div>
+                      </figure>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 top_brand_left">
+                <div class="hover14 column">
+                  <div class="agile_top_brand_left_grid">
+                    <div class="agile_top_brand_left_grid_pos">
+                      <img src="/static/build/images/offer.png" alt=" " class="img-responsive" />
+                    </div>
+                    <div class="agile_top_brand_left_grid1">
+                      <figure>
+                        <div class="snipcart-item block" >
+                          <div class="snipcart-thumb">
+                            <a href="products.html"><img title="زهر العسل 270g عصارة " alt=" زهر العسل 270g عصارة" src="/static/build/images/item-5.jpg" /></a>
+                            <p>زهر العسل 270g عصارة</p>
+                            <div class="stars">
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star gray-star" aria-hidden="true"></i>
+                            </div>
+                            <h4>$30.99 <span>$45.00</span></h4>
+                          </div>
+                          <div class="snipcart-details top_brand_home_details">
+                            <form action="#" method="post">
+                              <fieldset>
+                                <input type="hidden" name="cmd" value="_cart" />
+                                <input type="hidden" name="add" value="1" />
+                                <input type="hidden" name="business" value=" " />
+                                <input type="hidden" name="item_name" value="basmati rise" />
+                                <input type="hidden" name="amount" value="30.99" />
+                                <input type="hidden" name="discount_amount" value="1.00" />
+                                <input type="hidden" name="currency_code" value="USD" />
+                                <input type="hidden" name="return" value=" " />
+                                <input type="hidden" name="cancel_return" value=" " />
+                                <input type="submit" name="submit" value="عرض المنتج" class="button" />
+                              </fieldset>
+                            </form>
+                          </div>
+                        </div>
+                      </figure>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 top_brand_left">
+                <div class="hover14 column">
+                  <div class="agile_top_brand_left_grid">
+                    <div class="agile_top_brand_left_grid_pos">
+                      <img src="/static/build/images/offer.png" alt=" " class="img-responsive" />
+                    </div>
+                    <div class="agile_top_brand_left_grid_pos">
+                      <img src="/static/build/images/offer.png" alt=" " class="img-responsive" />
+                    </div>
+                    <div class="agile_top_brand_left_grid1">
+                      <figure>
+                        <div class="snipcart-item block">
+                          <div class="snipcart-thumb">
+                            <a href="products.html"><img src="/static/build/images/item-6.jpg" alt=" bio زهر العسل 500G جرة" class="img-responsive" /></a>
+                            <p>bio زهر العسل 500G جرة</p>
+                            <div class="stars">
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star gray-star" aria-hidden="true"></i>
+                            </div>
+                            <h4>$80.99 <span>$105.00</span></h4>
+                          </div>
+                          <div class="snipcart-details top_brand_home_details">
+                            <form action="#" method="post">
+                              <fieldset>
+                                <input type="hidden" name="cmd" value="_cart" />
+                                <input type="hidden" name="add" value="1" />
+                                <input type="hidden" name="business" value=" " />
+                                <input type="hidden" name="item_name" value="Pepsi soft drink" />
+                                <input type="hidden" name="amount" value="80.00" />
+                                <input type="hidden" name="discount_amount" value="1.00" />
+                                <input type="hidden" name="currency_code" value="USD" />
+                                <input type="hidden" name="return" value=" " />
+                                <input type="hidden" name="cancel_return" value=" " />
+                                <input type="submit" name="submit" value="عرض المنتج" class="button" />
+                              </fieldset>
+                            </form>
+                          </div>
+                        </div>
+                      </figure>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="clearfix"> </div>
+            </div> -->
+          </div>
+          <div role="tabpanel" class="tab-pane fade" id="tours" aria-labelledby="tours-tab">
+            <div class="agile-tp">
+              <h5>الأكثر مبيعاً</h5>
+              <p class="w3l-ad"> بعض من أكثر منتجاتنا مبيعاً</p>
+            </div>
+            <div class="agile_top_brands_grids">
+              <div class="col-md-4 top_brand_left">
+                <div class="hover14 column">
+                  <div class="agile_top_brand_left_grid">
+                    <div class="agile_top_brand_left_grid_pos">
+                      <img src="/static/build/images/offer.png" alt=" " class="img-responsive" />
+                    </div>
+                    <div class="agile_top_brand_left_grid1">
+                      <figure>
+                        <div class="snipcart-item block" >
+                          <div class="snipcart-thumb">
+                            <a href="products.html"><img title=" عصارة أكاسيا العسل مع زهر العسل" alt=" عصارة أكاسيا العسل مع زهر العسل" src="/static/build/images/item-1.jpg" /></a>
+                            <p>عصارة أكاسيا العسل مع زهر العسل</p>
+                            <div class="stars">
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star gray-star" aria-hidden="true"></i>
+                            </div>
+                            <h4>$20.99 <span>$35.00</span></h4>
+                          </div>
+                          <div class="snipcart-details top_brand_home_details">
+                            <form action="#" method="post">
+                              <fieldset>
+                                <input type="hidden" name="cmd" value="_cart" />
+                                <input type="hidden" name="add" value="1" />
+                                <input type="hidden" name="business" value=" " />
+                                <input type="hidden" name="item_name" value="Fortune Sunflower Oil" />
+                                <input type="hidden" name="amount" value="20.99" />
+                                <input type="hidden" name="discount_amount" value="1.00" />
+                                <input type="hidden" name="currency_code" value="USD" />
+                                <input type="hidden" name="return" value=" " />
+                                <input type="hidden" name="cancel_return" value=" " />
+                                <input type="submit" name="submit" value="عرض المنتج" class="button" />
+                              </fieldset>
+                            </form>
+                          </div>
+                        </div>
+                      </figure>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 top_brand_left">
+                <div class="hover14 column">
+                  <div class="agile_top_brand_left_grid">
+                    <div class="agile_top_brand_left_grid_pos">
+                      <img src="/static/build/images/offer.png" alt=" " class="img-responsive" />
+                    </div>
+                    <div class="agile_top_brand_left_grid1">
+                      <figure>
+                        <div class="snipcart-item block" >
+                          <div class="snipcart-thumb">
+                            <a href="products.html"><img title="بيو زهر العسل استخلص 500G جرة " alt="بيو زهر العسل استخلص 500G جرة " src="/static/build/images/item-7.jpg" /></a>
+                            <p>بيو زهر العسل استخلص 500G جرة</p>
+                            <div class="stars">
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star gray-star" aria-hidden="true"></i>
+                            </div>
+                            <h4>$20.99 <span>$35.00</span></h4>
+                          </div>
+                          <div class="snipcart-details top_brand_home_details">
+                            <form action="#" method="post">
+                              <fieldset>
+                                <input type="hidden" name="cmd" value="_cart" />
+                                <input type="hidden" name="add" value="1" />
+                                <input type="hidden" name="business" value=" " />
+                                <input type="hidden" name="item_name" value="basmati rise" />
+                                <input type="hidden" name="amount" value="20.99" />
+                                <input type="hidden" name="discount_amount" value="1.00" />
+                                <input type="hidden" name="currency_code" value="USD" />
+                                <input type="hidden" name="return" value=" " />
+                                <input type="hidden" name="cancel_return" value=" " />
+                                <input type="submit" name="submit" value="عرض المنتج" class="button" />
+                              </fieldset>
+                            </form>
+                          </div>
+                        </div>
+                      </figure>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 top_brand_left">
+                <div class="hover14 column">
+                  <div class="agile_top_brand_left_grid">
+                    <div class="agile_top_brand_left_grid_pos">
+                      <img src="/static/build/images/offer.png" alt=" " class="img-responsive" />
+                    </div>
+                    <div class="agile_top_brand_left_grid1">
+                      <figure>
+                        <div class="snipcart-item block">
+                          <div class="snipcart-thumb">
+                            <a href="products.html"><img src="/static/build/images/item-3.jpg" alt=" بيو غابة العسل مع بيو زهر العسل" class="img-responsive" /></a>
+                            <p>بيو غابة العسل مع بيو زهر العسل</p>
+                            <div class="stars">
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star gray-star" aria-hidden="true"></i>
+                            </div>
+                            <h4>$40.99 <span>$65.00</span></h4>
+                          </div>
+                          <div class="snipcart-details top_brand_home_details">
+                            <form action="#" method="post">
+                              <fieldset>
+                                <input type="hidden" name="cmd" value="_cart" />
+                                <input type="hidden" name="add" value="1" />
+                                <input type="hidden" name="business" value=" " />
+                                <input type="hidden" name="item_name" value="Pepsi soft drink" />
+                                <input type="hidden" name="amount" value="40.00" />
+                                <input type="hidden" name="discount_amount" value="1.00" />
+                                <input type="hidden" name="currency_code" value="USD" />
+                                <input type="hidden" name="return" value=" " />
+                                <input type="hidden" name="cancel_return" value=" " />
+                                <input type="submit" name="submit" value="عرض المنتج" class="button" />
+                              </fieldset>
+                            </form>
+                          </div>
+                        </div>
+                      </figure>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="clearfix"> </div>
+            </div>
+            <div class="agile_top_brands_grids">
+              <div class="col-md-4 top_brand_left">
+                <div class="hover14 column">
+                  <div class="agile_top_brand_left_grid">
+                    <div class="agile_top_brand_left_grid_pos">
+                      <img src="/static/build/images/offer.png" alt=" " class="img-responsive" />
+                    </div>
+                    <div class="agile_top_brand_left_grid1">
+                      <figure>
+                        <div class="snipcart-item block" >
+                          <div class="snipcart-thumb">
+                            <a href="products.html"><img title=" زهر العسل 1000G جرة" alt=" زهر العسل 1000G جرة" src="/static/build/images/item-4.jpg" /></a>
+                            <p>زهر العسل 1000G جرة</p>
+                            <div class="stars">
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star gray-star" aria-hidden="true"></i>
+                            </div>
+                            <h4>$35.99 <span>$55.00</span></h4>
+                          </div>
+                          <div class="snipcart-details top_brand_home_details">
+                            <form action="#" method="post">
+                              <fieldset>
+                                <input type="hidden" name="cmd" value="_cart" />
+                                <input type="hidden" name="add" value="1" />
+                                <input type="hidden" name="business" value=" " />
+                                <input type="hidden" name="item_name" value="Fortune Sunflower Oil" />
+                                <input type="hidden" name="amount" value="35.99" />
+                                <input type="hidden" name="discount_amount" value="1.00" />
+                                <input type="hidden" name="currency_code" value="USD" />
+                                <input type="hidden" name="return" value=" " />
+                                <input type="hidden" name="cancel_return" value=" " />
+                                <input type="submit" name="submit" value="عرض المنتج" class="button" />
+                              </fieldset>
+                            </form>
+                          </div>
+                        </div>
+                      </figure>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 top_brand_left">
+                <div class="hover14 column">
+                  <div class="agile_top_brand_left_grid">
+                    <div class="agile_top_brand_left_grid_pos">
+                      <img src="/static/build/images/offer.png" alt=" " class="img-responsive" />
+                    </div>
+                    <div class="agile_top_brand_left_grid1">
+                      <figure>
+                        <div class="snipcart-item block" >
+                          <div class="snipcart-thumb">
+                            <a href="products.html"><img title="زهر العسل 270g عصارة " alt=" زهر العسل 270g عصارة" src="/static/build/images/item-5.jpg" /></a>
+                            <p>زهر العسل 270g عصارة</p>
+                            <div class="stars">
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star gray-star" aria-hidden="true"></i>
+                            </div>
+                            <h4>$30.99 <span>$45.00</span></h4>
+                          </div>
+                          <div class="snipcart-details top_brand_home_details">
+                            <form action="#" method="post">
+                              <fieldset>
+                                <input type="hidden" name="cmd" value="_cart" />
+                                <input type="hidden" name="add" value="1" />
+                                <input type="hidden" name="business" value=" " />
+                                <input type="hidden" name="item_name" value="basmati rise" />
+                                <input type="hidden" name="amount" value="30.99" />
+                                <input type="hidden" name="discount_amount" value="1.00" />
+                                <input type="hidden" name="currency_code" value="USD" />
+                                <input type="hidden" name="return" value=" " />
+                                <input type="hidden" name="cancel_return" value=" " />
+                                <input type="submit" name="submit" value="عرض المنتج" class="button" />
+                              </fieldset>
+                            </form>
+                          </div>
+                        </div>
+                      </figure>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 top_brand_left">
+                <div class="hover14 column">
+                  <div class="agile_top_brand_left_grid">
+                    <div class="agile_top_brand_left_grid_pos">
+                      <img src="/static/build/images/offer.png" alt=" " class="img-responsive" />
+                    </div>
+                    <div class="agile_top_brand_left_grid_pos">
+                      <img src="/static/build/images/offer.png" alt=" " class="img-responsive" />
+                    </div>
+                    <div class="agile_top_brand_left_grid1">
+                      <figure>
+                        <div class="snipcart-item block">
+                          <div class="snipcart-thumb">
+                            <a href="products.html"><img src="/static/build/images/item-6.jpg" alt=" bio زهر العسل 500G جرة" class="img-responsive" /></a>
+                            <p>bio زهر العسل 500G جرة</p>
+                            <div class="stars">
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                              <i class="fa fa-star gray-star" aria-hidden="true"></i>
+                            </div>
+                            <h4>$80.99 <span>$105.00</span></h4>
+                          </div>
+                          <div class="snipcart-details top_brand_home_details">
+                            <form action="#" method="post">
+                              <fieldset>
+                                <input type="hidden" name="cmd" value="_cart" />
+                                <input type="hidden" name="add" value="1" />
+                                <input type="hidden" name="business" value=" " />
+                                <input type="hidden" name="item_name" value="Pepsi soft drink" />
+                                <input type="hidden" name="amount" value="80.00" />
+                                <input type="hidden" name="discount_amount" value="1.00" />
+                                <input type="hidden" name="currency_code" value="USD" />
+                                <input type="hidden" name="return" value=" " />
+                                <input type="hidden" name="cancel_return" value=" " />
+                                <input type="submit" name="submit" value="عرض المنتج" class="button" />
+                              </fieldset>
+                            </form>
+                          </div>
+                        </div>
+                      </figure>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="clearfix"> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- //top-brands -->
+
+<!-- banner-bottom -->
+	<!-- <div class="banner-bottom">
+		<div class="container">
+			<div class="product-one">
+				<div class="col-md-2 product-left">
+					<div class="p-one simpleCart_shelfItem jwe">
+							<a href="single.html">
+								<img src="/static/build/images/item-10.jpg" alt="" class="img-responsive" />
+								<div class="mask">
+									<span>Quick View</span>
+								</div>
+							</a>
+						<div class="product-left-cart">
+							<div class="product-left-cart-l">
+								<p><a class="item_add" href="#"><i></i> <span class=" item_price">$729</span></a></p>
+							</div>
+							<div class="product-left-cart-r">
+								<a href="#"> </a>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2 product-left">
+					<div class="p-one simpleCart_shelfItem jwe">
+						<a href="single.html">
+								<img src="/static/build/images/item-11.jpg" alt="" class="img-responsive" />
+								<div class="mask">
+									<span>Quick View</span>
+								</div>
+						</a>
+						<div class="product-left-cart">
+							<div class="product-left-cart-l">
+								<p><a class="item_add" href="#"><i></i> <span class=" item_price">$729</span></a></p>
+							</div>
+							<div class="product-left-cart-r">
+								<a href="#"> </a>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2 product-left">
+					<div class="p-one simpleCart_shelfItem jwe">
+						<a href="single.html">
+								<img src="/static/build/images/item-1.jpg" alt="" class="img-responsive" />
+								<div class="mask">
+									<span>Quick View</span>
+								</div>
+						</a>
+						<div class="product-left-cart">
+							<div class="product-left-cart-l">
+								<p><a class="item_add" href="#"><i></i> <span class=" item_price">$729</span></a></p>
+							</div>
+							<div class="product-left-cart-r">
+								<a href="#"> </a>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2 product-left">
+					<div class="p-one simpleCart_shelfItem jwe">
+						<a href="single.html">
+								<img src="/static/build/images/item-13.jpg" alt="" class="img-responsive" />
+								<div class="mask">
+									<span>Quick View</span>
+								</div>
+						</a>
+						<div class="product-left-cart">
+							<div class="product-left-cart-l">
+								<p><a class="item_add" href="#"><i></i> <span class=" item_price">$729</span></a></p>
+							</div>
+							<div class="product-left-cart-r">
+								<a href="#"> </a>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2 product-left">
+					<div class="p-one simpleCart_shelfItem jwe">
+							<a href="single.html">
+								<img src="/static/build/images/item-14.jpg" alt="" class="img-responsive" />
+								<div class="mask">
+									<span>Quick View</span>
+								</div>
+							</a>
+						<div class="product-left-cart">
+							<div class="product-left-cart-l">
+								<p><a class="item_add" href="#"><i></i> <span class=" item_price">$729</span></a></p>
+							</div>
+							<div class="product-left-cart-r">
+								<a href="#"> </a>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2 product-left">
+					<div class="p-one simpleCart_shelfItem jwe">
+						<a href="single.html">
+								<img src="/static/build/images/item-15.jpg" alt="" class="img-responsive" />
+								<div class="mask">
+									<span>Quick View</span>
+								</div>
+						</a>
+						<div class="product-left-cart">
+							<div class="product-left-cart-l">
+								<p><a class="item_add" href="#"><i></i> <span class=" item_price">$729</span></a></p>
+							</div>
+							<div class="product-left-cart-r">
+								<a href="#"> </a>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="product-one">
+				<div class="col-md-2 product-left">
+					<div class="p-one simpleCart_shelfItem jwe">
+							<a href="single.html">
+								<img src="/static/build/images/item-16.jpg" alt="" class="img-responsive" />
+								<div class="mask">
+									<span>Quick View</span>
+								</div>
+							</a>
+						<div class="product-left-cart">
+							<div class="product-left-cart-l">
+								<p><a class="item_add" href="#"><i></i> <span class=" item_price">$729</span></a></p>
+							</div>
+							<div class="product-left-cart-r">
+								<a href="#"> </a>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2 product-left">
+					<div class="p-one simpleCart_shelfItem jwe">
+						<a href="single.html">
+								<img src="/static/build/images/item-17.jpg" alt="" class="img-responsive" />
+								<div class="mask">
+									<span>Quick View</span>
+								</div>
+						</a>
+						<div class="product-left-cart">
+							<div class="product-left-cart-l">
+								<p><a class="item_add" href="#"><i></i> <span class=" item_price">$729</span></a></p>
+							</div>
+							<div class="product-left-cart-r">
+								<a href="#"> </a>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2 product-left">
+					<div class="p-one simpleCart_shelfItem jwe">
+						<a href="single.html">
+								<img src="/static/build/images/item-18.jpg" alt="" class="img-responsive" />
+								<div class="mask">
+									<span>Quick View</span>
+								</div>
+						</a>
+						<div class="product-left-cart">
+							<div class="product-left-cart-l">
+								<p><a class="item_add" href="#"><i></i> <span class=" item_price">$729</span></a></p>
+							</div>
+							<div class="product-left-cart-r">
+								<a href="#"> </a>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2 product-left">
+					<div class="p-one simpleCart_shelfItem jwe">
+						<a href="single.html">
+								<img src="/static/build/images/item-19.jpg" alt="" class="img-responsive" />
+								<div class="mask">
+									<span>Quick View</span>
+								</div>
+						</a>
+						<div class="product-left-cart">
+							<div class="product-left-cart-l">
+								<p><a class="item_add" href="#"><i></i> <span class=" item_price">$729</span></a></p>
+							</div>
+							<div class="product-left-cart-r">
+								<a href="#"> </a>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2 product-left">
+					<div class="p-one simpleCart_shelfItem jwe">
+							<a href="single.html">
+								<img src="/static/build/images/item-20.jpg" alt="" class="img-responsive" />
+								<div class="mask">
+									<span>Quick View</span>
+								</div>
+							</a>
+						<div class="product-left-cart">
+							<div class="product-left-cart-l">
+								<p><a class="item_add" href="#"><i></i> <span class=" item_price">$729</span></a></p>
+							</div>
+							<div class="product-left-cart-r">
+								<a href="#"> </a>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2 product-left">
+					<div class="p-one simpleCart_shelfItem jwe">
+						<a href="single.html">
+								<img src="/static/build/images/item-5.jpg" alt="" class="img-responsive" />
+								<div class="mask">
+									<span>Quick View</span>
+								</div>
+						</a>
+						<div class="product-left-cart">
+							<div class="product-left-cart-l">
+								<p><a class="item_add" href="#"><i></i> <span class=" item_price">$729</span></a></p>
+							</div>
+							<div class="product-left-cart-r">
+								<a href="#"> </a>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div> -->
+<!-- //banner-bottom -->
+
+<div id="popup" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Modal title</h4>
+			</div>
+			<div class="modal-body">
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock content %}
+{% block javascripts %}
+{{ block.super }}
+<script>
+$(document).ready(function()	{
+				var	$popup	=	$('#popup');
+				$('.item	a').click(function(){
+								var	$link	=	$(this);
+								var	popup_url	=	$link.data('popup-url');
+								var	popup_title	=	$link.data('popup-title');
+								if	(!popup_url)	{
+												alert('done');
+								return	true;
+								}
+								$('.modal-title',	$popup).html(popup_title);
+								$('.modal-body',	$popup).load(popup_url,	function()	{
+								$popup.on('shown.bs.modal',	function	()	{
+												//	do	something	when	dialog	is	shown
+								}).modal("show");
+								});
+								$('.close',	$popup).click(function()	{
+												//	do	something	when	dialog	is	closing
+								});
+								return	false;	//	disable	default	link	functionality
+				});
+});
+</script>
+{% endblock%}

@@ -1,0 +1,137 @@
+{% extends "project/base_site.html" %}
+{% load i18n %}
+{% block stylesheets %}
+{{block.super}}
+<!-- <link type="text/css" href="/stylesheets/print.css" media="print"> -->
+<style>
+   .inv-title{
+    background: #615c5c;
+    text-align: center;
+    color: #fff;
+    padding: 12px;
+    margin-top: 10px;}
+    .table-details{
+      border:none;
+      margin-top: 25px;
+      width: 30%;
+    }
+    .head-table{
+
+      border-style: solid;
+      border-color: #BBB;
+      background: #666;
+      color: #fff;
+    }
+    .body-table{
+      border-radius: 0.25em;
+      border-style: solid;
+      border-color: #BBB;
+    }
+    .thead-dark{
+      color: #fff;
+background-color: #8e8989;
+    }
+
+</style>
+{% endblock %}
+{% block header %}
+ {% endblock header %}
+  {% block navigation%}
+  {% endblock navigation%}
+{% block content %}
+<div class="internal-page" style="min-height:500px">
+<!-- breadcrumbs -->
+
+<!-- //breadcrumbs -->
+<div class="container" style="min-height:500px">
+  <div class="inv-title"> <h3>{{_('INVOICE')}} # {{invoice.invoice_number}}</h3> </div>
+<table class="pull-right table table-bordered table-details">
+<tbody>
+
+  <tr>
+<th class="head-table"><span >{{_('Invoice Date')}}</span></th>
+<td class="body-table"><span>{{invoice.invoicedate}}</span></td>
+  </tr>
+  <tr>
+<th class="head-table"><span >{{_('Customer number')}}</span></th>
+<td class="body-table"><span>{{invoice.customerid.mobile}}</span></td>
+  </tr>
+  <tr>
+<th class="head-table"><span >{{_('Customer Name')}}</span></th>
+<td class="body-table"><span>{{invoice.customerid.name}}</span></td>
+  </tr>
+  <tr>
+<th class="head-table"><span >{{_('Employee Name')}}</span></th>
+<td class="body-table"><span>{{invoice.emp_id.first_name }} {{ invoice.emp_id.last_name}}</span></td>
+  </tr>
+</tbody>
+
+</table>
+<table class="pull-left table table-bordered table-details">
+<tbody>
+
+  <tr>
+<th class="head-table"><span >{{_('total before price')}}</span></th>
+<td class="body-table"><span>{{invoice.total_before_discount}}</span></td>
+  </tr>
+  <tr>
+<th class="head-table"><span >{{_('total after price')}}</span></th>
+<td class="body-table"><span>{{invoice.total_after_discount}}</span></td>
+  </tr>
+  <tr>
+<th class="head-table"><span >{{_('VAT')}}</span></th>
+<td class="body-table"><span>5%</span></td>
+  </tr>
+  <tr>
+<th class="head-table"><span >{{_('TOTAL')}}</span></th>
+<td class="body-table"><span>{{invoice.final_price}}</span></td>
+  </tr>
+</tbody>
+
+</table>
+   <fieldset class="col-md-12" style="margin-top:25px; margin-bottom:10px;">
+      <table id='js-table' class="table table-bordered">
+         <thead class="thead-dark">
+            <tr>
+               <th class="col-md-2"> {{_('Product Id')}}</th>
+               <th class="col-md-5">   {{_('Name')}}</th>
+               <th>   {{_('item price')}}</th>
+               <th>{{_('quantity')}}</th>
+               <!-- <th>   {{_('discount')}}</th> -->
+               <th>{{_('total before price')}}</th>
+               <th>{{_('total after price')}}</th>
+            </tr>
+         </thead>
+         <tbody>
+<!-- {{data.as_table}} -->
+            {% for data in inv_details %}
+
+            <tr>
+               <td class="col-md-2"> {{data.productid}}</td>
+               <td class="col-md-5">   {{data.productid.name}}</td>
+               <td>   {{data.itemprice}}</td>
+               <td>{{data.quantity}}</td>
+               <!-- <td> {{data.discount}}</td> -->
+               <td> {{data.total_before_discount}}</td>
+               <td > {{data.total_after_discount}}</td>
+               <td style="display:none;">{{data.mainprice}}</td>
+            </tr>
+            {%endfor%}
+         </tbody>
+      </table>
+
+
+   </fieldset>
+   <!-- {{data.as_table}} -->
+
+<!-- {{form.as_table}} -->
+<div></div>
+{% endblock content %}
+{% block footer %}
+{% endblock footer %}
+{% block javascripts %}
+{{ block.super }}
+<script>
+</script>
+
+{% endblock%}
